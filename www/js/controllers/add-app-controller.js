@@ -1,16 +1,17 @@
 'use strict';
 
-app.controller('addCtrl', ['$scope', '$firebaseArray', '$ionicPopup', function($scope, $firebaseArray, $ionicPopup) {
+app.controller('addCtrl', ['$scope', 'apps', '$ionicPopup', '$state', function($scope, apps, $ionicPopup, $state) {
   $scope.app = {
     name: '',
     description: '',
     link: ''
   };
 
-  var appsRef = firebase.database().ref().child('apps');
   $scope.add = function() {
-    $firebaseArray(appsRef).$add($scope.app)
-      .then()
+    apps.$add($scope.app)
+      .then(function() {
+        $state.go('app.catalog');
+      })
       .catch(function(error) {
         $ionicPopup.alert({
           title: 'Error',

@@ -3,15 +3,24 @@
     <button menu-toggle="left" class="button button-icon icon ion-navicon"></button>
   </ion-nav-buttons>
   <ion-nav-buttons side="right">
-    <a ui-sref="app.add" class="button button-icon icon ion-plus-round"></a>
+    <a ng-show="currentUser.admin" ui-sref="app.add" class="button button-icon icon-left ion-ios-plus-outline"></a>
   </ion-nav-buttons>
   <ion-content>
-    <div class="list">
-      <a class="item item-thumbnail-left" ng-repeat="app in apps">
+    <ion-list>
+      <ion-item class="item item-thumbnail-left" ng-repeat="app in apps">
         <img ng-src="{{app.image}}">
-        <h2 ng-bind="app.name">Pretty Hate Machine</h2>
-        <p ng-bind="app.description">Nine Inch Nails</p>
-      </a>
-    </div>
+        <h2 ng-bind="app.name"></h2>
+        <p>{{app.description}}</p>
+        <p><i class="icon ion-android-playstore"></i>: {{app.link}}</p>
+        <ion-option-button ng-class="{'ion-ios-heart': favoriteApps[app.$id], 'ion-ios-heart-outline': !favoriteApps[app.$id]}" class="button-positive icon"
+                           ng-click="toggleFavorites(app)">
+        </ion-option-button>
+        <ion-option-button class="button-assertive"
+                           ng-show="currentUser.admin"
+                           ng-click="delete(app)">
+          Delete
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
   </ion-content>
 </ion-view>

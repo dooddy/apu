@@ -38,6 +38,9 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         'currentAuth': ['Auth', function(Auth) {
           return Auth.$waitForSignIn();
         }]
+      },
+      data:  {
+        hideBackButton: true
       }
     })
     .state('app.add', {
@@ -58,13 +61,17 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/favorite',
       views: {
         'catalogView': {
-          templateUrl: 'templates/favorite.html'
+          templateUrl: 'templates/favorite.html',
+          controller: 'favoriteAppsCtrl'
         }
       },
       resolve: {
         'currentAuth': ['Auth', function(Auth) {
           return Auth.$waitForSignIn();
         }]
+      },
+      data:  {
+        hideBackButton: true
       }
     });
 

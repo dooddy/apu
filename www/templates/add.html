@@ -1,9 +1,9 @@
 <ion-view title="Add app">
   <ion-content>
-    <form class="list">
+    <form class="list" ng-submit="add()">
       <label class="item item-input item-floating-label">
         <span class="input-label">App name</span>
-        <input name="name" ng-model="app.name" type="text" placeholder="App name">
+        <input name="name" required ng-model="app.name" type="text" placeholder="App name">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Description</span>
@@ -18,7 +18,7 @@
         <!--<input ng-model="name" type="file">-->
       <!--</label>-->
       <div class="padding">
-        <button class="button button-block button-positive" ng-click="add()">
+        <button class="button button-block button-positive" type="submit">
           Submit
         </button>
       </div>

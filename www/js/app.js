@@ -15,6 +15,10 @@ var app = angular.module('AppThumbsUp', ['ionic', 'firebase'])
         StatusBar.styleDefault();
       }
 
+      $rootScope.$on('$stateChangeStart', function(event, toState, toParams, fromState, fromParams, error) {
+        $rootScope.hideBackButton = toState.data && toState.data.hideBackButton ? true : false;
+      });
+
       $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
         // We can catch the error thrown when the $requireSignIn promise is rejected
         // and redirect the user back to the home page
