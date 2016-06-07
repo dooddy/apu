@@ -4,7 +4,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
   $stateProvider
     .state('app', {
       url: '',
-      templateUrl: 'templates/app.html',
+      templateUrl: 'templates/home.html',
       abstract: true,
       controller: 'mainCtrl'
     })
@@ -12,7 +12,17 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/login',
       views: {
         'catalogView': {
-          templateUrl: 'templates/login.html'
+          templateUrl: 'templates/login.html',
+          controller: 'loginCtrl'
+        }
+      }
+    })
+    .state('app.register', {
+      url: '/register',
+      views: {
+        'catalogView': {
+          templateUrl: 'templates/register.html',
+          controller: 'registerCtrl'
         }
       }
     })
@@ -20,11 +30,28 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/catalog',
       views: {
         'catalogView': {
-          templateUrl: 'templates/catalog.html'
+          templateUrl: 'templates/catalog.html',
+          controller: 'catalogCtrl'
         }
       },
-      data: {
-        authorization: true
+      resolve: {
+        'currentAuth': ['Auth', function(Auth) {
+          return Auth.$waitForSignIn();
+        }]
+      }
+    })
+    .state('app.add', {
+      url: '/add',
+      views: {
+        'catalogView': {
+          templateUrl: 'templates/add.html',
+          controller: 'addCtrl'
+        }
+      },
+      resolve: {
+        'currentAuth': ['Auth', function(Auth) {
+          return Auth.$waitForSignIn();
+        }]
       }
     })
     .state('app.favorite', {
@@ -34,8 +61,10 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
           templateUrl: 'templates/favorite.html'
         }
       },
-      data: {
-        authorization: true
+      resolve: {
+        'currentAuth': ['Auth', function(Auth) {
+          return Auth.$waitForSignIn();
+        }]
       }
     });
 

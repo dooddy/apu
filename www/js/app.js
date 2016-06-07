@@ -1,5 +1,5 @@
 var app = angular.module('AppThumbsUp', ['ionic', 'firebase'])
-  .run(['$rootScope', '$state', '$ionicPlatform', 'authService', function ($rootScope, $state, $ionicPlatform, authService) {
+  .run(['$rootScope', '$state', '$ionicPlatform', '$firebaseObject', 'Auth', function ($rootScope, $state, $ionicPlatform, $firebaseObject, Auth) {
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
         // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
@@ -15,21 +15,10 @@ var app = angular.module('AppThumbsUp', ['ionic', 'firebase'])
         StatusBar.styleDefault();
       }
 
-      firebase.auth().onAuthStateChanged(function (user) {
-        if (user) {
-          authService.setUser(user);
-          $rootScope.currentUser = user;
-          $state.go('app.catalog');
-        } else {
-          authService.setUser(null);
-          $rootScope.currentUser = null;
-          $state.go('app.login');
-        }
-      });
-
-      $rootScope.$on('$stateChangeStart', function (event, toState) {
-        if (toState.data && toState.data.authorization && !authService.isLoggedIn()) {
-          event.preventDefault();
+      $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
+        // We can catch the error thrown when the $requireSignIn promise is rejected
+        // and redirect the user back to the home page
+        if (error === 'AUTH_REQUIRED') {
           $state.go('app.login');
         }
       });

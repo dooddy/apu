@@ -1,0 +1,27 @@
+<ion-view title="Add app">
+  <ion-content>
+    <form class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">App name</span>
+        <input name="name" ng-model="app.name" type="text" placeholder="App name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Description</span>
+        <input name="description" ng-model="app.description" type="text" placeholder="Description">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Google Play link</span>
+        <input name="link" ng-model="app.link" type="text" placeholder="Google Play link">
+      </label>
+      <!--<label class="item item-input item-floating-label">-->
+        <!--<span class="input-label">Image</span>-->
+        <!--<input ng-model="name" type="file">-->
+      <!--</label>-->
+      <div class="padding">
+        <button class="button button-block button-positive" ng-click="add()">
+          Submit
+        </button>
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

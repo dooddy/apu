@@ -1,6 +1,6 @@
-<ion-view title="Login">
+<ion-view title="Register">
   <ion-content>
-    <form ng-submit="login()">
+    <form ng-submit="register()">
       <div class="list">
         <label class="item item-input item-floating-label">
           <span class="input-label">Email</span>
@@ -10,17 +10,16 @@
           <span class="input-label">Password</span>
           <input type="password" ng-model="form.password" required placeholder="Password">
         </label>
+        <label class="item item-input item-floating-label">
+          <span class="input-label">Repeat password</span>
+          <input type="password" ng-model="form.repeatPassword" required placeholder="Repeat password">
+        </label>
       </div>
       <div class="padding">
         <button type="submit" class="button button-block button-calm">
-          Login
+          Sign up
         </button>
       </div>
     </form>
   </ion-content>
-  <div class="bar bar-footer">
-    <div class="title">
-      <a ui-sref="app.register">Sign up</a>
-    </div>
-  </div>
 </ion-view>
