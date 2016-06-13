@@ -13,10 +13,9 @@
         <span class="input-label">Google Play link</span>
         <input name="link" ng-model="app.link" type="text" placeholder="Google Play link">
       </label>
-      <!--<label class="item item-input item-floating-label">-->
-        <!--<span class="input-label">Image</span>-->
-        <!--<input ng-model="name" type="file">-->
-      <!--</label>-->
+      <div class="padding">
+        <upload-image set-image="setImage"></upload-image>
+      </div>
       <div class="padding">
         <button class="button button-block button-positive" type="submit">
           Submit

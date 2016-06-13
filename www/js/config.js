@@ -47,8 +47,8 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
       url: '/add',
       views: {
         'catalogView': {
-          templateUrl: 'templates/add.html',
-          controller: 'addCtrl'
+          templateUrl: 'templates/add-app.html',
+          controller: 'addAppCtrl'
         }
       },
       resolve: {

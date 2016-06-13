@@ -1,4 +1,4 @@
-var app = angular.module('AppThumbsUp', ['ionic', 'firebase'])
+var app = angular.module('AppThumbsUp', ['ionic', 'firebase', 'ngCordova'])
   .run(['$rootScope', '$state', '$ionicPlatform', '$firebaseObject', 'Auth', function ($rootScope, $state, $ionicPlatform, $firebaseObject, Auth) {
     $ionicPlatform.ready(function () {
       if (window.cordova && window.cordova.plugins.Keyboard) {
